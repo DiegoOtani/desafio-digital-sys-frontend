@@ -35,6 +35,7 @@ function PersonalInfoForm() {
         placeholder="Sobrenome" 
         key='last_name' 
       />
+      <label>Data de Nascimento:</label>
       <InputField 
         type="date" 
         onChange={handleInputChange("birth_date")} 

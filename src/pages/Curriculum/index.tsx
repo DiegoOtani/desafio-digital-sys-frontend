@@ -59,6 +59,62 @@ const Curriculum = () => {
         placeholder="Linkedin"
         key="Linkedin"
       />
+      <h2>Experiência Profissional</h2>
+      <InputField 
+        type="text"
+        onChange={handleInputChange("position")}
+        placeholder="Cargo"
+        key="position"
+      />
+      <InputField 
+        type="text"
+        onChange={handleInputChange("company")}
+        placeholder="Company"
+        key="company"
+      />
+      <InputField 
+        type="text"
+        onChange={handleInputChange("description")}
+        placeholder="Description"
+        key="description"
+      />
+      <label>Data de Início:</label>
+      <InputField 
+        type="date"
+        onChange={handleInputChange("start_date")}
+        key="start_date"
+      />
+      <label>Data de Fim:</label>
+      <InputField 
+        type="date"
+        onChange={handleInputChange("end_date")}
+        key="end_date"
+      />
+      <h2>Formação Acadêmica</h2>  
+      <InputField 
+        type="text"
+        onChange={handleInputChange("institution")}
+        placeholder="Instituição"
+        key="institution"
+      />
+      <InputField 
+        type="text"
+        onChange={handleInputChange("course")}
+        placeholder="Curso"
+        key="course"
+      />
+      <label>Data de Início:</label>
+      <InputField 
+        type="date"
+        onChange={handleInputChange("course_start_date")}
+        key="course_start_date"
+      />
+      <label>Data de Fim:</label>
+      <InputField 
+        type="date"
+        onChange={handleInputChange("course_end_date")}
+        key="course_end_date"
+      />
       <Button text="Enviar" onClick={handleSubmit}/>
     </form>
   </main>
