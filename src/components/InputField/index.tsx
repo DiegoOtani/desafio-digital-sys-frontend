@@ -1,6 +1,6 @@
 import { InputFieldProps } from "./types";
 
-const InputField = ({ onChange, placeholder, before: BeforeIcon, after: AfterIcon }: InputFieldProps) => {
+const InputField = ({ onChange, placeholder, type, before: BeforeIcon, after: AfterIcon }: InputFieldProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value)
   }
@@ -9,7 +9,7 @@ const InputField = ({ onChange, placeholder, before: BeforeIcon, after: AfterIco
     {BeforeIcon && <BeforeIcon size={30}/>}
     <input 
       className="w-full"
-      type="text" 
+      type={type} 
       placeholder={placeholder}
       onChange={handleChange}
     />
