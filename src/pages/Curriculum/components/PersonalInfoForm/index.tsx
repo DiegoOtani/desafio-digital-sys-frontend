@@ -40,7 +40,7 @@ function PersonalInfoForm() {
         onChange={handleInputChange("birth_date")} 
         key='birth_date' 
       />
-      <Button text="Submit" onClick={handleSubmit}/>
+      <Button text="Enviar" onClick={handleSubmit}/>
     </form>
   )
 };
