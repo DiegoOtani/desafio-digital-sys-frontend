@@ -3,7 +3,11 @@ import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { createPersonalInfo } from "../../../../services/personalInfo";
 
-function PersonalInfoForm() {
+interface Props {
+  setProfileId: (id:number) => void
+};
+
+function PersonalInfoForm({ setProfileId }: Props) {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -19,13 +23,8 @@ function PersonalInfoForm() {
 
   const handleSubmit = async() => {
     const result = await createPersonalInfo(formData.first_name, formData.last_name, formData.birth_date)
-    console.log(formData);
+    setProfileId(result.id);
     console.log(result);
-    setFormData({
-      first_name: "",
-      last_name: "",
-      birth_date: "",
-    })
   };
 
   return (
