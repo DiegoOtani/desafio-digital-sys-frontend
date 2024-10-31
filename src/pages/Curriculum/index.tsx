@@ -2,8 +2,12 @@ import PersonalInfoForm from "./components/PersonalInfoForm"
 import { useState } from "react"
 import Button from "../../components/Button"
 import InputField from "../../components/InputField"
+import { createAcademicTraining } from "../../services/academicTraining"
+import { createContactInfo } from "../../services/contactInfo"
+import { createWorkExperience } from "../../services/workExperience"
 
 const Curriculum = () => {
+  const [profileId, setProfileId] = useState<number>(0);
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -27,12 +31,19 @@ const Curriculum = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
+    const contactResponse = await createContactInfo(profileId, formData.email, formData.phone, formData.address, formData.linkedin)
+    console.log(contactResponse)
+    const workResponse = await createWorkExperience(profileId, formData.position, formData.company, formData.start_date, formData.end_date, formData.description);
+    console.log(workResponse)
+    const academicResponse = await createAcademicTraining(profileId, formData.institution, formData.course, formData.course_start_date, formData.course_end_date);
+    console.log(academicResponse);
+    console.log(profileId)
     console.log(formData)
   };
 
   return <main className="p-40 flex flex-col gap-4">
-    <PersonalInfoForm />
+    <PersonalInfoForm setProfileId={setProfileId}/>
     <form className="flex flex-col items-center p-20 gap-4 border-2 rounded border-black">
       <h2>Contato</h2>
       <InputField 
