@@ -1,7 +1,9 @@
-function App() {
+import Curriculum from "./pages/Curriculum"
 
+function App() {
   return (
     <>
+      <Curriculum />
     </>
   )
 }

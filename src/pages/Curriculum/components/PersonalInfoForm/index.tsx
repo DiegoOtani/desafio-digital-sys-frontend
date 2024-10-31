@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
+import { createPersonalInfo } from "../../../../services/personalInfo";
 
 function PersonalInfoForm() {
   const [formData, setFormData] = useState({
@@ -16,8 +17,15 @@ function PersonalInfoForm() {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
+    const result = await createPersonalInfo(formData.first_name, formData.last_name, formData.birth_date)
     console.log(formData);
+    console.log(result);
+    setFormData({
+      first_name: "",
+      last_name: "",
+      birth_date: "",
+    })
   };
 
   return (
@@ -26,12 +34,14 @@ function PersonalInfoForm() {
       <InputField 
         type="text" 
         onChange={handleInputChange("first_name")} 
+        value={formData.first_name}
         placeholder="Nome" 
         key='first_name' 
       />
       <InputField 
         type="text" 
         onChange={handleInputChange("last_name")} 
+        value={formData.last_name}
         placeholder="Sobrenome" 
         key='last_name' 
       />
@@ -39,6 +49,7 @@ function PersonalInfoForm() {
       <InputField 
         type="date" 
         onChange={handleInputChange("birth_date")} 
+        value={formData.birth_date}
         key='birth_date' 
       />
       <Button text="Enviar" onClick={handleSubmit}/>
