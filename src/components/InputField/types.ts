@@ -6,4 +6,5 @@ export type InputFieldProps = {
   onChange: (value: string) => void
   before?: React.ComponentType<IconProps>
   after?: React.ComponentType<IconProps>
+  value?:string
 };
