@@ -7,8 +7,8 @@ export const createPersonalInfo = async(first_name: string, last_name:string, bi
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return error.response
-  }
-  return null
+      return error.response;
+    }
+    return null
   }
 };
