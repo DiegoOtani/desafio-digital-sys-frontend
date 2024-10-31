@@ -6,6 +6,7 @@ import Title from "../../components/Title"
 import { createAcademicTraining } from "../../services/academicTraining"
 import { createContactInfo } from "../../services/contactInfo"
 import { createWorkExperience } from "../../services/workExperience"
+import { toast } from "react-toastify"
 
 const Curriculum = () => {
   const [profileId, setProfileId] = useState<number>(0);
@@ -33,17 +34,34 @@ const Curriculum = () => {
   };
 
   const handleSubmit = async() => {
+    if(profileId === 0) return toast.error("Informe suas informações pessoais primeiro.");
     const contactResponse = await createContactInfo(profileId, formData.email, formData.phone, formData.address, formData.linkedin)
-    console.log(contactResponse)
+    if(contactResponse.status && contactResponse.status >= 400) return toast.error("Dados inválidos.") && console.error(contactResponse.data);
     const workResponse = await createWorkExperience(profileId, formData.position, formData.company, formData.start_date, formData.end_date, formData.description);
-    console.log(workResponse)
+    if(workResponse.status && workResponse.status >= 400) return toast.error("Dados inválidos.") && console.error(workResponse.data);
     const academicResponse = await createAcademicTraining(profileId, formData.institution, formData.course, formData.course_start_date, formData.course_end_date);
-    console.log(academicResponse);
-    console.log(profileId)
-    console.log(formData)
+    if(academicResponse.status && academicResponse.status >= 400) return toast.error("Dados inválidos.") && console.error(academicResponse.data);
+    toast.success("Dados cadastrados com sucesso.")
+
+    setFormData({
+      email: "",
+      phone: "",
+      address: "",
+      linkedin: "",
+      position: "",
+      company: "",
+      start_date: "",
+      end_date: "",
+      description: "",
+      institution: "",
+      course: "",
+      course_start_date: "",
+      course_end_date: "",
+    });
   };
 
   return <main className="px-40 py-20 flex flex-col gap-4 bg-gray-400">
+    <h1 className="text-center font-bold text-4xl p-2 text-gray-800 mb-4">Envie seu currículo</h1>
     <PersonalInfoForm setProfileId={setProfileId}/>
     <form className="flex flex-col items-center p-20 gap-4 border-2 rounded-xl border-black bg-white">
       <section className="w-full flex flex-col gap-4 items-center">

@@ -2,6 +2,7 @@ import { useState } from "react"
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { createPersonalInfo } from "../../../../services/personalInfo";
+import { toast } from "react-toastify";
 
 interface Props {
   setProfileId: (id:number) => void
@@ -23,8 +24,14 @@ function PersonalInfoForm({ setProfileId }: Props) {
 
   const handleSubmit = async() => {
     const result = await createPersonalInfo(formData.first_name, formData.last_name, formData.birth_date)
+    if(result.status && result.status >= 400) return toast.error("Dados inválidos.");
     setProfileId(result.id);
-    console.log(result);
+    toast.success("Dados pessoais cadastrados com sucesso.");
+    setFormData({
+      first_name: "",
+      last_name: "",
+      birth_date: ""
+    })
   };
 
   return (
