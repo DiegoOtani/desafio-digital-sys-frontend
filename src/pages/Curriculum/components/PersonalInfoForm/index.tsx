@@ -28,8 +28,8 @@ function PersonalInfoForm({ setProfileId }: Props) {
   };
 
   return (
-    <form className="flex flex-col items-center p-20 gap-4 border-2 rounded border-black">
-      <h2>Dados Pessoais</h2>
+    <form className="flex flex-col items-center p-20 gap-4 border-2 rounded-xl border-black bg-white">
+      <h2 className="font-bold text-xl">Dados Pessoais</h2>
       <InputField 
         type="text" 
         onChange={handleInputChange("first_name")} 
